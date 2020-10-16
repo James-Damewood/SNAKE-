@@ -11,8 +11,10 @@ Additional Modes may allow for other  such as periodic boundary conditions (snak
 Further Goals include using Reinforcement Learning to build an A.I.
 
 Accomplished Tasks:
-Build Single Player
-Build Reinforcement Learning approach for single player
+
+(1) Build Single Player
+
+(2) Build Reinforcement Learning approach for single player
 
 
 Reinforcement learning approach is built off of Adam Pazke's tutorial, which can be found here:
