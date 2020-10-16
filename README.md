@@ -1,5 +1,5 @@
 
-Goal here is to create a multiplayer version of Snake. In general, the goal will be to grow your snake as large as possible without being eliminated by walls, objects, walls, or your opponents.
+Goal here is to create a multiplayer version of Snake. In general, the goal will be to grow your snake as large as possible without being eliminated by walls, objects, or your opponents.
 
 Modes for victory can be:
 (1) Eliminate all other snakes
