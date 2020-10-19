@@ -26,9 +26,9 @@ class Game():
         self.board[3,5] = 3
         self.p[(3,5)] = [1,0]
         self.foods = []
-        self.max_food = 75
+        self.max_food = 5
         self.food_appeared = 0
-        self.rate = 1
+        self.rate = 20
         self.num_steps = 0
 
     def play_game(self):
@@ -60,6 +60,8 @@ class Game():
 
 
         grow_snake = False
+        tail_reset = False
+        tail_momentum = [0,0]
         prev_tail = copy.deepcopy(self.Snake[-1])
         for index,segment in enumerate(self.Snake):
             plc = tuple(segment)
@@ -79,6 +81,9 @@ class Game():
                         game_on = False
                     if (self.board[segment[0]+p_stp[0],segment[1]+p_stp[1]] == 4):
                         grow_snake = True
+                    if (self.board[segment[0]+p_stp[0],segment[1]+p_stp[1]] == 1):
+                        tail_reset = True
+                        tail_momentum = copy.deepcopy(self.p[(segment[0]+p_stp[0],segment[1]+p_stp[1])])
                     self.board[segment[0]+p_stp[0],segment[1]+p_stp[1]] = 3
                     self.p[(segment[0]+p_stp[0],segment[1]+p_stp[1])] = copy.deepcopy(p_stp)
                 else:
@@ -92,22 +97,30 @@ class Game():
             else:
                 if game_on:
                     if grow_snake == False:
-                        p_stp = self.p[plc]
-                        self.board[segment[0]+p_stp[0],segment[1]+p_stp[1]] = 1
-                        self.p[plc] = [0,0]
-                        self.board[plc[0],plc[1]] = 0
+                        if tail_reset == False:
+                            p_stp = copy.deepcopy(self.p[plc])
+                            self.board[segment[0]+p_stp[0],segment[1]+p_stp[1]] = 1
+                            self.p[plc] = [0,0]
+                            self.board[plc[0],plc[1]] = 0
+                        else:
+                            p_stp = tail_momentum
+                            self.board[segment[0]+p_stp[0],segment[1]+p_stp[1]] = 1
+
+
                     else:
-                        p_stp = self.p[plc]
+                        p_stp = copy.deepcopy(self.p[plc])
                         self.board[segment[0]+p_stp[0],segment[1]+p_stp[1]] = 2
                         self.board[plc[0],plc[1]] = 1
             self.Snake[index] = [segment[0]+p_stp[0],segment[1]+p_stp[1]]
+
+
         change = 0
         if grow_snake:
             self.Snake.append(prev_tail)
             change = 1
         self.num_steps += 1
 
-        if (self.num_steps > (self.food_appeared +1)*self.rate and len(self.foods) < self.max_food):
+        if (self.num_steps > (self.food_appeared)*self.rate and len(self.foods) < self.max_food):
             x_pos = np.random.randint(0,self.block_size)
             y_pos = np.random.randint(0,self.block_size)
             while self.board[x_pos,y_pos] != 0:
