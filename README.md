@@ -17,5 +17,5 @@ Accomplished Tasks:
 (2) Build Reinforcement Learning approach for single player
 
 
-Reinforcement learning approach is built off of Adam Pazke's tutorial, which can be found here:
+Reinforcement learning approach is built using Adam Pazke's tutorial, which can be found here:
 https://pytorch.org/tutorials/intermediate/reinforcement_q_learning.html
