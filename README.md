@@ -6,16 +6,11 @@ Modes for victory can be:
 (2) Largest snake in given time
 (3) First snake to reach a specific size
 
-Additional Modes may allow for other  such as periodic boundary conditions (snake passing through top appears at the bottom)
+Additional Modes may allow for other scenarios such as periodic boundary conditions (snake passing through top appears at the bottom)
 
-Further Goals include using Reinforcement Learning to build an A.I.
-
-Accomplished Tasks:
-
-(1) Build Single Player
-
-(2) Build Reinforcement Learning approach for single player
+Further Goals include using Reinforcement Learning to build an automated opponent.
 
 
-Reinforcement learning approach is a slightly modified version of Adam Pazke's tutorial, which can be found here:
+
+The reinforcement learning approach is a version of Adam Pazke's tutorial adapted to this application, which can be found here:
 https://pytorch.org/tutorials/intermediate/reinforcement_q_learning.html
